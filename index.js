@@ -1,20 +1,45 @@
 //require express and create its instance 
 const express = require('express');
 const app = express();
+require('dotenv/config')
+require('./models/salesagent')
+
 
 //requiring body parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
 const path = require('path');
+
+//requiring mongose and connecting to db
+const mongoose = require('mongoose');
+//
+mongoose.connect(process.env.DB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+mongoose.connection.on('open', () => {
+        console.log('Mongoose connection open');
+    })
+    .on('error', (err) => {
+        console.log(`Connection error: ${err.message}`);
+    });
+
+
+
 
 //setting view engine and specifying the views directory
 app.set('view engine', 'pug');
 app.set('views', './views');
 
 //requiring salesagent registration routes
-const salesagentRoutes = require('./routes/registersalesagentroutes')
+const salesagentRoutes = require('./routes/registersalesagentroutes');
 app.use('/registersalesagent', salesagentRoutes);
+
+//requiring addproducts routes
+const addproductRoutes = require('./routes/addproductroutes')
+app.use('/addproduct', addproductRoutes)
 
 //end point for '/' 
 app.get('/', (req, res) => {
