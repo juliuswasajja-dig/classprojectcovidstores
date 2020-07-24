@@ -2,6 +2,20 @@
 const express = require('express');
 const app = express();
 
+//requiring body parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }))
+
+const path = require('path');
+
+//setting view engine and specifying the views directory
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+//requiring salesagent registration routes
+const salesagentRoutes = require('./routes/registersalesagentroutes')
+app.use('/registersalesagent', salesagentRoutes);
+
 //end point for '/' 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
