@@ -1,20 +1,14 @@
 //require express and create its instance 
 const express = require('express');
 const app = express();
+app.use(express.static('public'));
+
 require('dotenv/config')
 require('./models/salesagent')
 
 
-//requiring body parser
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }))
-
-
-const path = require('path');
-
 //requiring mongose and connecting to db
 const mongoose = require('mongoose');
-//
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -27,6 +21,12 @@ mongoose.connection.on('open', () => {
     });
 
 
+//requiring body parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }))
+
+
+const path = require('path');
 
 
 //setting view engine and specifying the views directory
