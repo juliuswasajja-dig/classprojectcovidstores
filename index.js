@@ -1,10 +1,12 @@
 //require express and create its instance 
 const express = require('express');
 const app = express();
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
 
 require('dotenv/config')
 require('./models/salesagent')
+require('./models/product')
 
 
 //requiring mongose and connecting to db
@@ -27,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 const path = require('path');
+app.use(express.static('public'));
 
 
 //setting view engine and specifying the views directory
@@ -34,14 +37,16 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 //requiring salesagent registration routes
-const salesagentRoutes = require('./routes/registersalesagentroutes');
+const salesagentRoutes = require('./routes/salesagentroutes');
 app.use('/registersalesagent', salesagentRoutes);
 
-//requiring addproducts routes
-const addproductRoutes = require('./routes/addproductroutes')
-app.use('/addproduct', addproductRoutes)
+//requiring products routes
+const productRoutes = require('./routes/productroutes')
+app.use('/addproduct', productRoutes)
 
-//end point for '/' 
+//requiring 
+/*
+//end point for HOMEPAGE '/' 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 });
@@ -65,5 +70,5 @@ app.get('/salesagent', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/404.html')
 });
-
+*/
 app.listen(4000, () => console.log("Port: 4000 active, Covid Stores is Running"));
