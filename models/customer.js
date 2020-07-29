@@ -1,3 +1,4 @@
+/*
 const mongoose = require('mongoose')
 
 const customerSchema = new mongoose.Schema({
@@ -8,13 +9,15 @@ const customerSchema = new mongoose.Schema({
     telnumber: Number,
     location: String,
     email: String,
-    /*
-        paymentdetails
+*/
+/*
+    paymentdetails
 
-        initialpay: Number,
+    initialpay: Number,
 
-        */
+    
 
 
 });
+*/
 module.exports = mongoose.model('Customer', customerSchema);

@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        link(rel="stylesheet",type="text/css", href="/css/bootstrapcss/bootstrap.css")
+        title First Pug Template 
+    body
+        .row.justify-content-center
+            div.col-md-6
+                div.card-body
+                    block content
+        
+
+    script (src='/js/bootstrapjs/bootstrap.js')
+    script (src='/js/bootstrapjs/jquery-3.5.1.slim.min.js')
+    script (src='/js/bootstrapjs/popper.min.js')
+
+    footer.row.justify-content-center
+         div.col-md-6
+            block footer
+                div.col-md-12 © 2020 Refactory Cohort 5, NodeJS.

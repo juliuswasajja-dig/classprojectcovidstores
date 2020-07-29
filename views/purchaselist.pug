@@ -1,0 +1,58 @@
+extends layout
+block content
+    header.card-header
+        h4.card-title Purchases
+        |&nbsp
+    div.form-row
+        div.col.form-group.col-md-12    
+            form.search(action='/register/userlist')
+                div.form-row
+                    div.col-md-8
+                        input.form-control(name='city' placeholder="Enter your search term ...")
+                    div.col-md-4
+                        input.btn.btn-dark.btn-block(type="submit")
+    table.table
+        thead.thead-dark
+            tr
+                th Customer Name
+                th National ID No
+                th National ID Image
+                th Location
+                th Address
+                th Phone Number
+                th Email Address
+                th Product Name
+                th Product Serial Number
+                th Initial Pay
+                th Date of Initial Pay
+                th Amount Due Next Payment
+                th Date of Next Payment
+                th Referee Name
+                th Referee Number
+                th Purchase Receipt
+        tbody
+            each purchase in purchases
+                tr
+                    td #{purchase.customername}
+                    td #{purchase.nationalidnumber}
+                    td #{purchase.nationalidimage}
+                    td #{purchase.location}
+                    td #{purchase.address}
+                    td #{purchase.phoneno}
+                    td #{purchase.customeremail}
+                    td #{purchase.productname}
+                    td #{purchase.productserialnumber}
+                    td #{purchase.initialpay}
+                    td #{purchase.dateofinitialpay}
+                    td #{purchase.amountofnextpayment}
+                    td #{purchase.dateofnextpayment}
+                    td #{purchase.refereename}
+                    td #{purchase.refereetelnumber}
+                    td #{purchase.purchasereceipt}
+
+
+
+                    td
+                        //form(method="post" action='/register/delete')
+                            input(type="hidden", placeholder="", name="id", value=user._id)
+                            button.btn.btn-dark.btn-block(type="submit") Delete

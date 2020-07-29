@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const salesagentSchema = new mongoose.Schema({
     firstname: {
@@ -20,4 +21,5 @@ const salesagentSchema = new mongoose.Schema({
     },
 
 })
+salesagentSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Salesagent', salesagentSchema)
