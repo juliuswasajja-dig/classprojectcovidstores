@@ -12,6 +12,7 @@ router.post('/', async(req, res) => {
 
     try {
         const registeragent = new Salesagent(req.body);
+        console.log(req.body);
         await Salesagent.register(registeragent, req.body.password);
         // await salesagentregistration.save();
         res.send('thanks for resgistering')
@@ -22,20 +23,28 @@ router.post('/', async(req, res) => {
 })
 
 router.get('/list', async(req, res) => {
-    try {
-        await Salesagent.find((err, salesagents) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.render('salesagentlist', {
-                    salesagents: salesagents
-                })
-            }
-        })
+    if (req.session.user) {
+        try {
+            await Salesagent.find((err, salesagents) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('salesagentlist', {
+                        salesagents: salesagents
+                    })
+                }
+            })
 
-    } catch (err) {
-        console.log(err)
+        } catch (err) {
+            console.log(err)
+        }
+
+    } else {
+        console.log('cant find session')
+        res.redirect('/login')
     }
+
+
 })
 
 module.exports = router;
