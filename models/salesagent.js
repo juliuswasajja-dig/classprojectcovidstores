@@ -12,9 +12,7 @@ const salesagentSchema = new mongoose.Schema({
     salesagentempid: String,
     salesagentphoto: String,
     username: String,
-    //gender: String,
-    //country: String,
-    //city: String,
+
     password: {
         type: String,
         //required: 'Please enter pasword'

@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 app.use(express.static(__dirname + '/public'));
 
+//multer thing
+
 require('dotenv/config')
 const Salesagent = require('./models/salesagent')
 require('./models/product')

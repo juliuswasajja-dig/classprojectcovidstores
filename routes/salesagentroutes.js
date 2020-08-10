@@ -3,16 +3,43 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Salesagent = mongoose.model('Salesagent');
 
+
+
+//multer
+const multer = require('multer');
+const fs = require('fs');
+
+router.use('/uploadedimages', express.static('/public/uploadedimages'));
+//app.use(express.static(__dirname + '/public/uploadedimages'));
+
+//multer file uploader
+//set Storage
+const storage = multer.diskStorage({
+    //Define storage location on Server
+    destination: (req, file, cb) => {
+        cb(null, 'public/uploadedimages')
+    },
+    //Give a new name to the uploaded image
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + file.originalname)
+    }
+})
+
+const upload = multer({ storage: storage });
+
+
 router.get('/', (req, res) => {
     res.render('salesagentregistration');
 });
 
-router.post('/', async(req, res) => {
+router.post('/', upload.single('salesagentphoto'), async(req, res) => {
 
 
     try {
         const registeragent = new Salesagent(req.body);
-        console.log(req.body);
+        //console.log(req.body);
+        registeragent.salesagentphoto = req.file.path;
+        console.log(req.body)
         await Salesagent.register(registeragent, req.body.password);
         // await salesagentregistration.save();
         res.send('thanks for resgistering')

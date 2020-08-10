@@ -1,91 +1,101 @@
-//national ID 3 chars in capital.7 numbers, 3 chars
-//EMPID
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var validate = () => {
-
-    //Validating Firstname
-    var firstname = document.formdata.firstname;
-    //Fisrt name cannot be empty
-
-    if (firstname.value.length == "") {
-        firstname.style.border = '5px solid blue'
-        alert("The First Name cannot be, Please fill it in ")
-
-    }
-    //Accepting right characters in First Name
-    var letters = /^[A-Za-z]+$/;
-
-    if (!firstname.value.match(letters)) {
-        firstname.style.border = '5px solid green'
-        alert("Enter the right First name, should start with letter")
-    }
-    //Validating Last name
-    var lastname = document.formdata.lname;
-    //Last name cannot be empty
-
-    if (lastname.value.length == "") {
-        lastname.style.border = '5px solid blue'
-        alert("The Last Name cannot be, Please fill it in ")
-
-    }
-
-    //Accepting right characters in Last Name
-    var letters = /^[A-Za-z]+$/;
-
-    if (!lastname.value.match(letters)) {
-        lastname.style.border = '5px solid green'
-        alert("Enter the right Last name, should start with letter")
-    }
-
-    //Street Field Validation (cannot be empty)
-    var street = document.formdata.street;
-    if (street.value.length == "") {
-        street.style.border = '5px solid blue'
-        alert("The Street cannot be empty,please provide it")
-
-    }
-    //City Field Validation (cannot be empty)
-    var city = document.formdata.city;
-    if (city.value.length == "") {
-        city.style.border = '5px solid blue'
-        alert("The city cannot be empty,please provide it")
-
-    }
-
-    // Validating Biography
-    var biography = document.formdata.biography;
-    //Biograpgy length
-    if (biography.value.length < 2000) {
-        biography.style.border = '5px solid green'
-        alert("2000 charcaters and above are allowed in this biography field, please add more information about yourself")
-    }
-
-    var letters = /^[A-Za-z]+$/;
-
-    if (!biography.value.match(letters)) {
-        biography.style.border = '5px solid blue'
-        alert("Biography should start with letter")
-    }
-
-
-    //Validating the image (not sure of this one)
-    var image = document.formdata.image;
-    if (image.value.length == "") {
-        image.style.border = '5px solid blue'
-        alert("Please upload image")
-
-    }
-
+// Defining a function to display error message
+function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
 }
+
+
+
+const salesagent_form = document.getElementById('salesagentform')
+
+
+salesagent_form.addEventListener('submit', (e) => {
+    // Defining a function to validate form 
+    // Retrieving the values of form elements 
+    var firstname = document.salesagentform.firstname.value;
+    var lastname = document.salesagentform.lastname.value;
+    // var salesagentempid = document.salesagentform.salesagentempid.value;
+    // var salesagentnin = document.salesagentform.salesagentnin.value;
+    // var salesagentphoto = document.salesagentform.salesagentimage.value;
+    // var username = document.salesagentform.username.value;
+    // //var password = document.salesagentform.password.value;
+
+    // Defining error variables with a default value
+    var firstnameErr = lastnameErr = true;
+
+    // Validate firstname
+    if (firstname == "") {
+        printError("firstnameErr", "Please enter your firstname");
+    } else {
+        var regex = /^[a-zA-Z\s]+$/;
+        if (regex.test(firstname) === false) {
+            printError("firstnameErr", "Please enter a valid firstname");
+        } else {
+            printError("firstnameErr", "");
+            firstnameErr = false;
+        }
+    }
+    // Validate lastname
+    if (lastname == "") {
+        printError("lastnameErr", "Please enter your lastname");
+    } else {
+        var regex = /^[a-zA-Z\s]+$/;
+        if (regex.test(lastname) === false) {
+            printError("lastnameErr", "Please enter a valid lastname");
+        } else {
+            printError("lastnameErr", "");
+            lastnameErr = false;
+        }
+    }
+
+
+    // // Validate empid
+    // if (empid == "") {
+    //     printError("emailErr", "Please enter your email address");
+    // } else {
+    //     // Regular expression for basic email validation
+    //     var regex = /^\S+@\S+\.\S+$/;
+    //     if (regex.test(email) === false) {
+    //         printError("emailErr", "Please enter a valid email address");
+    //     } else {
+    //         printError("emailErr", "");
+    //         emailErr = false;
+    //     }
+    // }
+
+    // // Validate mobile number
+    // if (mobile == "") {
+    //     printError("mobileErr", "Please enter your mobile number");
+    // } else {
+    //     var regex = /^[1-9]\d{9}$/;
+    //     if (regex.test(mobile) === false) {
+    //         printError("mobileErr", "Please enter a valid 10 digit mobile number");
+    //     } else {
+    //         printError("mobileErr", "");
+    //         mobileErr = false;
+    //     }
+    // }
+
+    // // Validate country
+    // if (country == "Select") {
+    //     printError("countryErr", "Please select your country");
+    // } else {
+    //     printError("countryErr", "");
+    //     countryErr = false;
+    // }
+
+    // // Validate gender
+    // if (gender == "") {
+    //     printError("genderErr", "Please select your gender");
+    // } else {
+    //     printError("genderErr", "");
+    //     genderErr = false;
+    // }
+
+    // Prevent the form from being submitted if there are any errors
+    if ((fisrtnameErr || lastnameErr) == true) {
+        e.preventDefault();
+    } else {
+        e.currentTarget.submit();
+    }
+
+})
