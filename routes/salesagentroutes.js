@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Salesagent = mongoose.model('Salesagent');
+const Product = mongoose.model('Product');
 
 
 
@@ -28,36 +29,61 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-router.get('/', (req, res) => {
-    res.render('salesagentregistration');
-});
+// router.get('/', (req, res) => {
+//     res.render('salesagentregistration');
+// });
 
-router.post('/', upload.single('salesagentphoto'), async(req, res) => {
+// router.post('/', upload.single('salesagentphoto'), async(req, res) => {
 
 
-    try {
-        const registeragent = new Salesagent(req.body);
-        //console.log(req.body);
-        registeragent.salesagentphoto = req.file.path;
-        console.log(req.body)
-        await Salesagent.register(registeragent, req.body.password);
-        // await salesagentregistration.save();
-        res.send('thanks for resgistering')
-    } catch (err) {
-        res.send('soomething went wromg');
-        console.log(err)
-    }
-})
+//     try {
+//         const registeragent = new Salesagent(req.body);
+//         //console.log(req.body);
+//         registeragent.salesagentphoto = req.file.path;
+//         console.log(req.body)
+//         await Salesagent.register(registeragent, req.body.password);
+//         // await salesagentregistration.save();
+//         res.send('thanks for resgistering')
+//     } catch (err) {
+//         res.send('soomething went wromg');
+//         console.log(err)
+//     }
+// })
 
-router.get('/list', async(req, res) => {
+// router.get('/list', async(req, res) => {
+//     if (req.session.user) {
+//         try {
+//             await Salesagent.find((err, salesagents) => {
+//                 if (err) {
+//                     console.log(err);
+//                 } else {
+//                     res.render('salesagentlist', {
+//                         salesagents: salesagents
+//                     })
+//                 }
+//             })
+
+//         } catch (err) {
+//             console.log(err)
+//         }
+
+//     } else {
+//         console.log('cant find session')
+//         res.redirect('/login')
+//     }
+
+
+// })
+
+router.get('/productlist', async(req, res) => {
     if (req.session.user) {
         try {
-            await Salesagent.find((err, salesagents) => {
+            await Product.find((err, products) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render('salesagentlist', {
-                        salesagents: salesagents
+                    res.render('productlist', {
+                        products: products
                     })
                 }
             })
@@ -73,6 +99,9 @@ router.get('/list', async(req, res) => {
 
 
 })
+
+
+
 
 module.exports = router;
 
@@ -125,5 +154,19 @@ router.post("/", async (req, res) => {
     console.log("cant find session")
     res.redirect('/login')
   }
+})
+
+
+
+router.post('/', async(req, res) => {
+    try {
+        const registeragent = new Salesagent(req.body);
+        console.log(req.body);
+        await salesagentregistration.save();
+        res.send('thanks for resgistering')
+    } catch (err) {
+        res.send('soomething went wromg');
+        console.log(err)
+    }
 })
 */

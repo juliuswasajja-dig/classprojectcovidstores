@@ -8,7 +8,7 @@ head
   meta(name='author' content='Colorlib')
   meta(name='keywords' content='Colorlib Templates')
   // Title Page
-  title SALES AGENT
+  title STORE MANAGER
   // Icons font CSS
   link(href='/template/vendor/mdi-font/css/material-design-iconic-font.min.css' rel='stylesheet' media='all')
   link(href='/template/vendor/font-awesome-4.7/css/font-awesome.min.css' rel='stylesheet' media='all')
@@ -23,43 +23,9 @@ head
   .wrapper.wrapper--w790
     .card.card-5
       .card-heading
-        h2.title SALESAGENT
+        h2.title STOREMANAGER
       .card-body
-        form(name='salesagentform' id='salesagentform' method='POST' enctype='multipart/form-data')
-          .form-row.m-b-55
-            .name Agent Name
-            .value
-              .row.row-space
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='firstname' id='firstname')
-                    div(class="error" id="firstnameErr")
-                    label.label--desc First Name
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='lastname' id='lastname')
-                    div(class="error" id="lastnameErr")
-                    label.label--desc Last Number
-          .form-row.m-b-55
-            .name ID NOs.
-            .value
-              .row.row-space
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='salesagentempid' id='salesagentempid')
-                    div(class="error" id="salesagentempidErr")
-                    label.label--desc Employee ID
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='salesagentnin' id='salesagentnin')
-                    div(class="error" id="salesagentninErr")
-                    label.label--desc National ID
-          .form-row
-            .name
-            .value
-              .input-group
-                input.input--style-5(type='file' name='salesagentphoto' id='salesagentphoto')
-                label.label--desc Passport Photo
+        form(name='storemanagerform' id='storemanagerform' method='POST')
           .form-row.m-b-55
             .name   System Details
             .value
@@ -73,7 +39,7 @@ head
                     input.input--style-5(type='password' name='password')
                     label.label--desc Password
           div
-            button.btn.btn--radius-2.btn--red(type='submit' align='center') ADD SALESAGENT
+            button.btn.btn--radius-2.btn--red(type='submit' align='center') REGISTER MANAGER
 script(src='/validations/salesagentvalidation.js')
 
 // Jquery JS

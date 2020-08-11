@@ -2,11 +2,13 @@
 const express = require('express');
 const app = express();
 app.use(express.static(__dirname + '/public'));
+app.use('/public/uploadedimages', express.static(__dirname + '/public/uploadedimages'))
 
 //multer thing
 
 require('dotenv/config')
 const Salesagent = require('./models/salesagent')
+const StoreManager = require('./models/storemanager')
 require('./models/product')
 require('./models/purchase')
 
@@ -33,18 +35,24 @@ const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 /* PASSPORT LOCAL AUTHENTICATION */
+//
 
 passport.use(Salesagent.createStrategy());
 
 passport.serializeUser(Salesagent.serializeUser());
 passport.deserializeUser(Salesagent.deserializeUser());
 
+//
+
+passport.use(StoreManager.createStrategy());
+
+passport.serializeUser(StoreManager.serializeUser());
+passport.deserializeUser(StoreManager.deserializeUser());
+
 
 
 //mongoose passport
 const passportLocalMongoose = require('passport-local-mongoose');
-
-
 
 //requiring mongose and connecting to db
 const mongoose = require('mongoose');
@@ -63,13 +71,21 @@ mongoose.connection.on('open', () => {
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+//requiring home routes
+const homeRoutes = require('./routes/homeroutes');
+app.use('/', homeRoutes);
+
+//requiring home routes
+const storemanagerRoutes = require('./routes/storemanagerroutes');
+app.use('/storemanager', storemanagerRoutes);
+
+//requiring salesagent routes
+const salesagentRoutes = require('./routes/salesagentroutes');
+app.use('/salesagent', salesagentRoutes);
+
 //requiring login routes
 const loginRoutes = require('./routes/loginroutes');
 app.use('/login', loginRoutes);
-
-//requiring salesagent registration routes
-const salesagentRoutes = require('./routes/salesagentroutes');
-app.use('/registersalesagent', salesagentRoutes);
 
 //requiring products routes
 const productRoutes = require('./routes/productroutes')
@@ -79,31 +95,8 @@ app.use('/addproduct', productRoutes)
 const purchaseRoutes = require('./routes/purchaseroutes')
 app.use('/addpurchase', purchaseRoutes)
 
-//requiring 
-/*
-//end point for HOMEPAGE '/' 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-});
-
-//end point for the '/about'
-app.get('/about', (req, res) => {
-    res.sendFile(__dirname + '/about.html')
-});
-
-//end point for the '/storemanger'
-app.get('/storemanager', (req, res) => {
-    res.sendFile(__dirname + '')
-});
-
-//endpoint for the '/salesagent
-app.get('/salesagent', (req, res) => {
-    res.sendFile(__dirname + '')
-});
-
 //end point for unknown /unspecified resources
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/404.html')
 });
-*/
 app.listen(4000, () => console.log("Port: 4000 active, Covid Stores is Running"));

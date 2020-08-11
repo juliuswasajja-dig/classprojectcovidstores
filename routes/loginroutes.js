@@ -6,10 +6,6 @@ router.get('/', (req, res) => {
     res.render('./login/storemanagerlogin')
 })
 
-
-
-
-
 //process the username and password
 router.post('/', passport.authenticate('local'), (req, res) => {
     req.session.user = req.user;
