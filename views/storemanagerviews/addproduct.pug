@@ -25,18 +25,20 @@ head
       .card-heading
         h2.title ADD PRODUCT
       .card-body
-        form(method='POST' enctype='multipart/form-data')
+        form(method='POST' name='productform' id='productform' enctype='multipart/form-data')
           .form-row.m-b-55
             .name Item Identification
             .value
               .row.row-space
                 .col-2
                   .input-group-desc
-                    input.input--style-5(type='text' name='productname')
+                    input.input--style-5(type='text' name='productname' id='productname')
+                    div(class="error" id="productnameErr")
                     label.label--desc Product Name
                 .col-2
                   .input-group-desc
-                    input.input--style-5(type='text' name='serialnumber')
+                    input.input--style-5(type='text' name='serialnumber' id='serialnumber')
+                    div(class="error" id="serialnumberErr")
                     label.label--desc Serial Number
           .form-row.m-b-55
             .name Price
@@ -45,10 +47,12 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='productprice')
+                    div(class="error" id="productpriceErr")
                     label.label--desc Actual Price
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='productinitialpay')
+                    div(class="error" id="productinitialpayErr")
                     label.label--desc Initail Pay
           .form-row.m-b-55
             .name Item Apperance
@@ -57,16 +61,19 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='productmake')
+                    div(class="error" id="productmakeErr")
                     label.label--desc Product Make
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='productcolor')
+                    div(class="error" id="productcolorErr")
                     label.label--desc Product Color
           .form-row
             .name
             .value
               .input-group
                 input.input--style-5(type='file' name='productimage')
+                div(class="error" id="productimageErr")
                 label.label--desc Product Image
           .form-row
             .name Category
@@ -74,30 +81,36 @@ head
               .input-group
                 .rs-select2.js-select-simple.select--no-search
                   select(name='productcategory')
-                    option(disabled='disabled' selected='selected') Choose option
-                    option Subject 1
-                    option Subject 2
-                    option Subject 3
+                    option(disabled='disabled' selected='selected') Choose Category
+                    option Electronics
+                    option Furniture
+                    option Sports and Fitness
+                    option Machinery
                   .select-dropdown
+                    div(class="error" id="productcategoryErr")
           .form-row
             .name Product Description
             .value
               .input-group
                 input.input--style-5(type='text' name='productdescription')
+                div(class="error" id="productdescriptionErr")
           .form-row.m-b-55
             .name Stock
             .value
               .row.row-refine
                 .col-3
                   .input-group-desc
-                    input.input--style-5(type='text' name='productQty')
+                    input.input--style-5(type='number' name='productQty')
+                    div(class="error" id="productQtyErr")
                     label.label--desc Quantity
                 .col-9
                   .input-group-desc
                     input.input--style-5(type='text' name='dateofEntry')
+                    div(class="error" id="dateofEntryErr")
                     label.label--desc Date of Entry
           div
             button.btn.btn--radius-2.btn--red(type='submit') ADD PRODUCT
+script(src='/validations/productvalidation.js')
 // Jquery JS
 script(src='/template/vendor/jquery/jquery.min.js')
 // Vendor JS

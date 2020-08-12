@@ -59,6 +59,7 @@ head
             .value
               .input-group
                 input.input--style-5(type='file' name='salesagentphoto' id='salesagentphoto')
+                div(class="error" id="salesagentphotoErr")
                 label.label--desc Passport Photo
           .form-row.m-b-55
             .name   System Details
@@ -67,10 +68,12 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='username')
+                    div(class="error" id="usernameErr")
                     label.label--desc Username
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='password' name='password')
+                    div(class="error" id="passwordErr")
                     label.label--desc Password
           div
             button.btn.btn--radius-2.btn--red(type='submit' align='center') ADD SALESAGENT

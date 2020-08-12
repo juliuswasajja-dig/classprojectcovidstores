@@ -56,6 +56,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 //requiring mongose and connecting to db
 const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -71,29 +72,17 @@ mongoose.connection.on('open', () => {
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-//requiring home routes
+//requiring Home routes
 const homeRoutes = require('./routes/homeroutes');
 app.use('/', homeRoutes);
 
-//requiring home routes
+//requiring Store Manager Routes
 const storemanagerRoutes = require('./routes/storemanagerroutes');
 app.use('/storemanager', storemanagerRoutes);
 
-//requiring salesagent routes
+//requiring Salesagent Routes
 const salesagentRoutes = require('./routes/salesagentroutes');
 app.use('/salesagent', salesagentRoutes);
-
-//requiring login routes
-//const loginRoutes = require('./routes/loginroutes');
-//app.use('/login', loginRoutes);
-
-//requiring products routes
-const productRoutes = require('./routes/productroutes')
-app.use('/addproduct', productRoutes)
-
-//requiring  purchase routes 
-const purchaseRoutes = require('./routes/purchaseroutes')
-app.use('/addpurchase', purchaseRoutes)
 
 //end point for unknown /unspecified resources
 app.get('*', (req, res) => {

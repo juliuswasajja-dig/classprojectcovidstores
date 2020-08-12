@@ -25,7 +25,7 @@ head
       .card-heading
         h2.title ADD PURCHASE
       .card-body
-        form(method='POST')
+        form(method='POST' name='purchaseform' id='purchaseform')
           .form-row.m-b-55
             .name Customer Identification
             .value
@@ -33,16 +33,19 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='customername')
+                    div(class="error" id="customernameErr")
                     label.label--desc Name
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='nationalidnumber')
+                    div(class="error" id="nationalidnumberErr")
                     label.label--desc National ID Number
           .form-row
             .name
             .value
               .input-group
                 input.input--style-5(type='file' name='nationalidimage')
+                div(class="error" id="nationalidimageErr")
                 label.label--desc National ID Image          
           .form-row.m-b-55
             .name Customer Location
@@ -51,10 +54,12 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='location')
+                    div(class="error" id="locationErr")
                     label.label--desc District/City
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='address')
+                    div(class="error" id="addressErr")
                     label.label--desc Address
           .form-row.m-b-55
             .name Customer Contact
@@ -63,10 +68,12 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='phoneno')
+                    div(class="error" id="phonenoErr")
                     label.label--desc Phone Number
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='customeremail')
+                    div(class="error" id="customeremailErr")
                     label.label--desc Email
           .form-row.m-b-55
             .name Product Identification
@@ -75,10 +82,12 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='productname')
+                    div(class="error" id="productnameErr")
                     label.label--desc Product Name
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='productserialnumber')
+                    div(class="error" id="productserialnumberErr")
                     label.label--desc Product Serial Number
           .form-row.m-b-55
             .name Current Payment
@@ -87,10 +96,12 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='initialpay')
+                    div(class="error" id="initialpayErr")
                     label.label--desc Intial Payment
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='dateofinitialpay')
+                    div(class="error" id="dateofinitialpayErr")
                     label.label--desc Date of Payment
           .form-row.m-b-55
             .name Next Payment 
@@ -99,16 +110,19 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='amountofnextpayment')
+                    div(class="error" id="amountofnextpaymentErr")
                     label.label--desc Amount Due Next Payment
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='dateofnextpayment')
+                    div(class="error" id="dateofnextpaymentErr")
                     label.label--desc Date of Next Payment
           .form-row
             .name
             .value
               .input-group
                 input.input--style-5(type='file' name='purchasereceipt')
+                div(class="error" id="purchasereceiptErr")
                 label.label--desc Receipt Image          
           .form-row.m-b-55
             .name Referee Details
@@ -117,15 +131,17 @@ head
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='refereename')
+                    div(class="error" id="refereenameErr")
                     label.label--desc Referee Name
                 .col-2
                   .input-group-desc
                     input.input--style-5(type='text' name='refereetelnumber')
+                    div(class="error" id="refereetelnumberErr")
                     label.label--desc Referee Phone Number
           .form-row.m-b-55
             div
               button.btn.btn--radius-2.btn--red(type='submit') Add Purchase
-
+script(src='/validations/purchasevalidation.js')
 // Jquery JS
 script(src='/template/vendor/jquery/jquery.min.js')
 // Vendor JS

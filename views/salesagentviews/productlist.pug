@@ -38,7 +38,6 @@ head
                 table.table
                     thead.thead-dark
                         tr
-
                             th Product Name
                             th Product Price
                             th Product Initialpay
@@ -48,7 +47,7 @@ head
                         each product in products
                             tr
                                 td #{product.productname}
-                                td #{product.productprice}
+                                td UGX #{product.productprice}.00
                                 td #{product.productinitialpay}
                                 td #{product.dateofEntry}
                                 td #{product.productQty}

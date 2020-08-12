@@ -128,6 +128,22 @@ router.get('/agentlist', async(req, res) => {
 
 })
 
+//Deleting agent 
+router.post('/deletesalesagent/:id', async(req, res) => {
+    if (req.session.user) {
+        try {
+            await Salesagent.deleteOne({ _id: req.params.id })
+            res.redirect('/storemanager/agentlist');
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
+
+    }
+});
+
 //defining route
 router.get('/addproduct', (req, res) => {
     if (req.session.user) {
@@ -182,6 +198,22 @@ router.get('/productlist', async(req, res) => {
 
 })
 
+//Deleting product
+router.post('/deleteproduct/:id', async(req, res) => {
+    if (req.session.user) {
+        try {
+            await Product.deleteOne({ _id: req.params.id })
+            res.redirect('/storemanager/productlist');
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
+
+    }
+});
+
 router.get('/purchaselist', async(req, res) => {
     if (req.session.user) {
         try {
@@ -205,6 +237,7 @@ router.get('/purchaselist', async(req, res) => {
     }
 })
 
+
 //logout
 router.post('/logout', (req, res) => {
     if (req.session) {
@@ -217,5 +250,6 @@ router.post('/logout', (req, res) => {
         })
     }
 })
+
 
 module.exports = router;

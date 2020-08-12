@@ -3,16 +3,34 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     productname: {
         type: String,
+        trim: true,
+        required: true,
+        unique: true,
     },
     productcategory: String,
     productdescription: String,
     productprice: Number,
     productinitialpay: Number,
     //productpayinterval: Number,
-    productimage: String,
+    productimage: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+    },
     productcolor: String,
-    productmake: String,
-    serialnumber: String,
+    productmake: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+    },
+    serialnumber: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+    },
     dateofEntry: String,
     productQty: Number,
 
