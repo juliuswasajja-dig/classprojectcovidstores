@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/login', (req, res) => {
-    res.render('login/salesagentlogin')
+    res.render('loginviews/salesagentlogin')
 })
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
@@ -45,7 +45,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 router.get('/', (req, res) => {
     if (req.session.user) {
-        res.render('users/salesagentpanel');
+        res.render('salesagentviews/salesagentpanel');
     } else {
         console.log('cant find session')
         res.redirect('/salesagent/login')
@@ -53,7 +53,7 @@ router.get('/', (req, res) => {
 });
 router.get('/addpurchase', (req, res) => {
     if (req.session.user) {
-        res.render('addpurchase');
+        res.render('salesagentviews/addpurchase');
     } else {
         console.log('cant find session')
         res.redirect('/salesagent/login')
@@ -82,7 +82,7 @@ router.get('/purchaselist', async(req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render('purchaselist', {
+                    res.render('salesagentviews/purchaselist', {
                         purchases: purchases
                     })
                 }
@@ -105,7 +105,7 @@ router.get('/productlist', async(req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render('productlist', {
+                    res.render('salesagentviews/productlist', {
                         products: products
                     })
                 }

@@ -32,7 +32,7 @@ const upload = multer({ storage: storage });
 
 
 router.get('/login', (req, res) => {
-    res.render('login/storemanagerlogin')
+    res.render('loginviews/storemanagerlogin')
 })
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
@@ -41,7 +41,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 router.get('/', (req, res) => {
     if (req.session.user) {
-        res.render('users/storemanagerpanel');
+        res.render('storemanagerviews/storemanagerpanel');
     } else {
         console.log('cant find session')
         res.redirect('/storemanager/login')
@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
 });
 router.get('/newmanager', (req, res) => {
     if (req.session.user) {
-        res.render('storemanagerregister')
+        res.render('storemanagerviews/storemanagerregister')
     } else {
         console.log('cant find session')
         res.redirect('/storemanager/login')
@@ -76,7 +76,7 @@ router.post('/newmanager', async(req, res) => {
 
 router.get('/registersalesagent', (req, res) => {
     if (req.session.user) {
-        res.render('salesagentregistration');
+        res.render('storemanagerviews/salesagentregistration');
     } else {
         console.log('cant find session')
         res.redirect('/storemanager/login')
@@ -92,9 +92,9 @@ router.post('/registersalesagent', upload.single('salesagentphoto'), async(req, 
             //console.log(req.body)
             await Salesagent.register(registeragent, req.body.password);
             // await salesagentregistration.save();
-            res.send('thanks for resgistering')
+            res.redirect('/storemanager/agentlist')
         } catch (err) {
-            res.send('soomething went wromg');
+            res.send('REGISTRATION NOT SUCCESFUL PLEASE TRY AGAIN');
             console.log(err)
         }
     } else {
@@ -111,7 +111,7 @@ router.get('/agentlist', async(req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render('salesagentlist', {
+                    res.render('storemanagerviews/salesagentlist', {
                         salesagents: salesagents
                     })
                 }
@@ -128,6 +128,35 @@ router.get('/agentlist', async(req, res) => {
 
 })
 
+//defining route
+router.get('/addproduct', (req, res) => {
+    if (req.session.user) {
+        res.render('storemanagerviews/addproduct');
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
+    }
+})
+
+
+router.post('/addproduct', upload.single('productimage'), async(req, res) => {
+    if (req.session.user) {
+        try {
+            const addproduct = new Product(req.body);
+            //console.log(req.body)
+            addproduct.productimage = req.file.path;
+            await addproduct.save();
+            res.redirect('/storemanager/productlist');
+            //res.render('productlist')
+        } catch (err) {
+            res.send('something went wrong');
+            console.log(err)
+        }
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
+    }
+})
 router.get('/productlist', async(req, res) => {
     if (req.session.user) {
         try {
@@ -135,7 +164,7 @@ router.get('/productlist', async(req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render('productlist', {
+                    res.render('storemanagerviews/productlist', {
                         products: products
                     })
                 }
@@ -154,57 +183,29 @@ router.get('/productlist', async(req, res) => {
 })
 
 router.get('/purchaselist', async(req, res) => {
-        if (req.session.user) {
-            try {
-                await Purchase.find((err, purchases) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        res.render('purchaselist', {
-                            purchases: purchases
-                        })
-                    }
-                })
-
-            } catch (err) {
-                console.log(err)
-            }
-        } else {
-            console.log('cant find session')
-            res.redirect('/salesagent/login')
-
-        }
-    })
-    //defining route
-router.get('/addproduct', (req, res) => {
     if (req.session.user) {
-        res.render('addproduct');
+        try {
+            await Purchase.find((err, purchases) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('storemanagerviews/purchaselist', {
+                        purchases: purchases
+                    })
+                }
+            })
+
+        } catch (err) {
+            console.log(err)
+        }
     } else {
         console.log('cant find session')
-        res.redirect('/storemanager/login')
+        res.redirect('/salesagent/login')
+
     }
 })
 
-
-router.post('/addproduct', upload.single('productimage'), async(req, res) => {
-        if (req.session.user) {
-            try {
-                const addproduct = new Product(req.body);
-                //console.log(req.body)
-                addproduct.productimage = req.file.path;
-                await addproduct.save();
-                res.send('product added')
-                    //res.render('productlist')
-            } catch (err) {
-                res.send('something went wrong');
-                console.log(err)
-            }
-        } else {
-            console.log('cant find session')
-            res.redirect('/storemanager/login')
-        }
-    })
-    //logout
+//logout
 router.post('/logout', (req, res) => {
     if (req.session) {
         req.session.destroy(function(err) {

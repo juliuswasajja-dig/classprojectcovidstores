@@ -11,7 +11,7 @@ router.get('/', async(req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                console.log(products)
+                //sconsole.log(products)
                 res.render('home', {
                     products: products
                 })
