@@ -44,10 +44,10 @@ passport.deserializeUser(Salesagent.deserializeUser());
 
 //
 
-passport.use(StoreManager.createStrategy());
+// passport.use(StoreManager.createStrategy());
 
-passport.serializeUser(StoreManager.serializeUser());
-passport.deserializeUser(StoreManager.deserializeUser());
+// passport.serializeUser(StoreManager.serializeUser());
+// passport.deserializeUser(StoreManager.deserializeUser());
 
 
 
@@ -84,8 +84,8 @@ const salesagentRoutes = require('./routes/salesagentroutes');
 app.use('/salesagent', salesagentRoutes);
 
 //requiring login routes
-const loginRoutes = require('./routes/loginroutes');
-app.use('/login', loginRoutes);
+//const loginRoutes = require('./routes/loginroutes');
+//app.use('/login', loginRoutes);
 
 //requiring products routes
 const productRoutes = require('./routes/productroutes')

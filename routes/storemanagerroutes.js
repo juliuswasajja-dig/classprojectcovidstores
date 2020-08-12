@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Salesagent = mongoose.model('Salesagent');
 const Product = mongoose.model('Product');
 const StoreManager = mongoose.model('StoreManager');
+const Purchase = mongoose.model('Purchase');
 
 //multer
 const multer = require('multer');
@@ -36,14 +37,22 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
     req.session.user = req.user;
-    res.send('you are  logged in');
+    res.redirect('/storemanager/');
+});
+router.get('/', (req, res) => {
+    if (req.session.user) {
+        res.render('users/storemanagerpanel');
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
+    }
 });
 router.get('/newmanager', (req, res) => {
     if (req.session.user) {
         res.render('storemanagerregister')
     } else {
         console.log('cant find session')
-        res.redirect('login/storemanagerlogin')
+        res.redirect('/storemanager/login')
     }
 })
 
@@ -61,7 +70,7 @@ router.post('/newmanager', async(req, res) => {
 
     } else {
         console.log('cant find session')
-        res.redirect('/login')
+        res.redirect('/storemanager/login')
     }
 })
 
@@ -70,7 +79,7 @@ router.get('/registersalesagent', (req, res) => {
         res.render('salesagentregistration');
     } else {
         console.log('cant find session')
-        res.redirect('/login')
+        res.redirect('/storemanager/login')
     }
 
 });
@@ -90,7 +99,7 @@ router.post('/registersalesagent', upload.single('salesagentphoto'), async(req, 
         }
     } else {
         console.log('cant find session')
-        res.redirect('/login')
+        res.redirect('/storemanager/login')
     }
 
 })
@@ -113,7 +122,7 @@ router.get('/agentlist', async(req, res) => {
         }
     } else {
         console.log('cant find session')
-        res.redirect('/login')
+        res.redirect('/storemanager/login')
     }
 
 
@@ -138,10 +147,74 @@ router.get('/productlist', async(req, res) => {
 
     } else {
         console.log('cant find session')
-        res.redirect('/login')
+        res.redirect('/storemanager/login')
     }
 
 
+})
+
+router.get('/purchaselist', async(req, res) => {
+        if (req.session.user) {
+            try {
+                await Purchase.find((err, purchases) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.render('purchaselist', {
+                            purchases: purchases
+                        })
+                    }
+                })
+
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            console.log('cant find session')
+            res.redirect('/salesagent/login')
+
+        }
+    })
+    //defining route
+router.get('/addproduct', (req, res) => {
+    if (req.session.user) {
+        res.render('addproduct');
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
+    }
+})
+
+
+router.post('/addproduct', upload.single('productimage'), async(req, res) => {
+        if (req.session.user) {
+            try {
+                const addproduct = new Product(req.body);
+                //console.log(req.body)
+                addproduct.productimage = req.file.path;
+                await addproduct.save();
+                res.send('product added')
+                    //res.render('productlist')
+            } catch (err) {
+                res.send('something went wrong');
+                console.log(err)
+            }
+        } else {
+            console.log('cant find session')
+            res.redirect('/storemanager/login')
+        }
+    })
+    //logout
+router.post('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(function(err) {
+            if (err) {
+                // failed to destroy session
+            } else {
+                return res.redirect('/storemanager/login');
+            }
+        })
+    }
 })
 
 module.exports = router;
