@@ -5,7 +5,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        unique: true,
     },
     productcategory: String,
     productdescription: String,
@@ -23,7 +22,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        unique: true,
     },
     serialnumber: {
         type: String,

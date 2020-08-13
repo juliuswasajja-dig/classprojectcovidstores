@@ -42,11 +42,20 @@ head
                 a(href='#')
                   img.card-img-top(src=eachproduct.productimage alt='')
                 .card-body
+                  //img.card-img-top(src=eachproduct.productimage alt='')
                   h4.card-title
                     a(href='#') LTPP #{eachproduct.productname}
-                  h5 #{eachproduct.productprice}
+                  h5 UGX #{eachproduct.productprice}.00
                   p.card-text
-                    | #{eachproduct.productdescription}
+                    | Description: #{eachproduct.productdescription}
+                  p.card-text
+                    | Category: #{eachproduct.productcategory}
+                  p.card-text
+                    | Initial Pay: #{eachproduct.productinitialpay}
+                  p.card-text
+                    | Product Make: #{eachproduct.productmake}
+                  p.card-text
+                    | Serial Number: #{eachproduct.productserialnumber}
                 .card-footer
                   small.text-muted &starf; &starf; &starf; &starf; &star;
           //- .col-lg-4.col-md-6.mb-4

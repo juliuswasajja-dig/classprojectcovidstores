@@ -23,7 +23,7 @@ head
   .wrapper.wrapper--w790
     .card.card-5
       .card-heading
-        h2.title PURCHASE DETAILSSSS
+        h2.title PURCHASE DETAIL
       .card-body
         each eachpurchase in purchases
             .col-lg-4.col-md-6.mb-4
@@ -31,16 +31,21 @@ head
                 //- a(href='#')
                 //-   img.card-img-top(src=eachproduct.productimage alt='')
                 .card-body
-                    p Customer Name #{eachpurchase.customername}
-                    p Customer Name #{eachpurchase.phoneno}
-                    p Customer Name #{eachpurchase.productname}
-                    p Customer Name #{eachpurchase.initialpay}
-                    p Customer Name #{eachpurchase.dateofinitialpay}
-                    p Customer Name #{eachpurchase.amountofnextpayment}
-                    p Customer Name #{eachpurchase.dateofnextpaymeny}
-                    p Customer Name #{eachpurchase.refereename}
-                    //p Customer Name #{eachpurchase.phoneno}
-
+                    h2 Customer Name: #{eachpurchase.customername}
+                    br
+                    h4 Customer Phone No: #{eachpurchase.phoneno}
+                    br
+                    h2 Product Name: #{eachpurchase.productname}
+                    br
+                    h2 Initial Pay: #{eachpurchase.initialpay}
+                    br
+                    h4 Date of Initial Pay: #{eachpurchase.dateofinitialpay}
+                    br
+                    h4 Amount of Next Payment #{eachpurchase.amountofnextpayment}
+                    br
+                    h4 Date of Next Pay: #{eachpurchase.dateofnextpayment}
+                    br
+                    h4 Referee Name: #{eachpurchase.refereename}
                 //-   h5 #{eachproduct.productprice}
                 //-   p.card-text
                 //-     | #{eachproduct.productdescription}

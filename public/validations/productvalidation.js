@@ -114,27 +114,3 @@ productForm.addEventListener('submit', (e) => {
 
 
 })
-
-
-
-
-// // Validate gender
-// if (gender == "") {
-//     printError("genderErr", "Please select your gender");
-// } else {
-//     printError("genderErr", "");
-//     genderErr = false;
-// }
-
-// // Validate mobile number
-// if (mobile == "") {
-//     printError("mobileErr", "Please enter your mobile number");
-// } else {
-//     var regex = /^[1-9]\d{9}$/;
-//     if (regex.test(mobile) === false) {
-//         printError("mobileErr", "Please enter a valid 10 digit mobile number");
-//     } else {
-//         printError("mobileErr", "");
-//         mobileErr = false;
-//     }
-// }

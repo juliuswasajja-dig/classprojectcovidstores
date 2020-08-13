@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 app.use(express.static(__dirname + '/public'));
 app.use('/public/uploadedimages', express.static(__dirname + '/public/uploadedimages'))
+app.use('/product/public/uploadedimages', express.static(__dirname + '/public/uploadedimages'))
 
 //multer thing
 
