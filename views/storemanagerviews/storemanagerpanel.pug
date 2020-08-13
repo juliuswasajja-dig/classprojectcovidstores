@@ -9,61 +9,73 @@ head
   link(href='../home/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
   // Custom styles for this template
   link(href='../home/css/shop-homepage.css' rel='stylesheet')
-.page-wrapper.bg-gra-03.p-t-45.p-b-50
-  .wrapper.wrapper--w790
-  // Page Content
-  .container
-    .row
-      .col-lg-2
-        .card-heading
-            h4.title TASKS
-        .list-group
-        a.list-group-item(href='http://localhost:4000/storemanager/registersalesagent') REGISTER SALES AGENT
-        a.list-group-item(href='http://localhost:4000/storemanager/agentlist') SALES AGENT LIST
-        a.list-group-item(href='http://localhost:4000/storemanager/addproduct') ADD PRODUCT
-        a.list-group-item(href='http://localhost:4000/storemanager/productlist') PRODUCT LIST
-        a.list-group-item(href='http://localhost:4000/storemanager/purchaselist') PURCHASES LIST
-      // /.col-lg-3
-      .col-lg-10
-        .card.card-5
-            .card-heading
-                h2.title STORE MANAGER
-            .card-body
-                //- div.form-row
-                //-     div.col.form-group.col-md-12    
-                //-         form.search(action='/register/userlist')
-                //-             div.form-row
-                //-                 div.col-md-8
-                //-                     input.form-control(name='city' placeholder="Enter your search term ...")
-                //-                 div.col-md-4
-                //-                     input.btn.btn-dark.btn-block(type="submit")
-                table.table
-                    thead.thead-dark
-                        tr
-                            th Product Name
-                            th Serial No
-                            th Product Description
-                            th Product Price
-                            th Product Initialpay
-                            th Product Image
-                            th Product Color
-                            th Product Make
-                            th Date of Entry
-                            th ProductQty
-                    //- tbody
-                    //-         tr
-                    //-             td a(href='https://www.w3schools.com') Visit W3Schools.com!
-                    //-             td frer
+body
+    // Navigation
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      .container
+        a.navbar-brand(href='#') Covid Stores
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item.active
+              a.nav-link(href='#')
+                | Home
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='http://localhost:4000/storemanager/registersalesagent') Register Sales Agent
+            li.nav-item
+              a.nav-link(href='http://localhost:4000/storemanager/agentlist') Sales Agent List
+            li.nav-item
+              a.nav-link(href='http://localhost:4000/storemanager/addproduct') Add Product
+            li.nav-item
+              a.nav-link(href='http://localhost:4000/storemanager/productlist') Product List
+            li.nav-item
+              a.nav-link(href='http://localhost:4000/storemanager/addproduct') Purchase List   
+    .page-wrapper.bg-gra-03.p-t-45.p-b-50
+      .wrapper.wrapper--w790
+      // Page Content
+      .container
+        br
+        br
+        br 
+        .row
+          .col-lg-12
+            .card.card-5
+                .card-heading
+                    h2.title STORE MANAGER PANEL
+                .card-body
+                  .col-md-
+                    table.table
+                        thead.thead-dark
+                            tr
+                                th Product Name
+                                th Serial No
+                                th Product Description
+                                th Product Price
+                                th Product Initialpay
+                                th Product Image
+                                th Product Color
+                                th Product Make
+                                th Date of Entry
+                                th ProductQty
+                        //- tbody
+                        //-         tr
+                        //-             td a(href='https://www.w3schools.com') Visit W3Schools.com!
+                        //-             td frer
+                    // /.row
+                // /.col-lg-9
                 // /.row
-            // /.col-lg-9
-            // /.row
-        // /.container
-        // Footer
-footer.py-5.bg-dark
-.container
-    p.m-0.text-center.text-white Copyright &copy; Covid Stores 2020
-// /.container
-// Bootstrap core JavaScript
-script(src='../home/vendor/jquery/jquery.min.js')
-script(src='../home/vendor/bootstrap/js/bootstrap.bundle.min.js')
+            // /.container
+            // Footer
+    footer.py-5.bg-dark
+        p.m-0.text-center.text-white Copyright &copy; Covid Stores Wasajja 2020
+    // /.container
+    // Bootstrap core JavaScript
+    script(src='../home/vendor/jquery/jquery.min.js')
+    script(src='../home/vendor/bootstrap/js/bootstrap.bundle.min.js')
+    //
+    script(src='/template/vendor/select2/select2.min.js')
+    script(src='/template/vendor/datepicker/moment.min.js')
+    script(src='/template/vendor/datepicker/daterangepicker.js')
 

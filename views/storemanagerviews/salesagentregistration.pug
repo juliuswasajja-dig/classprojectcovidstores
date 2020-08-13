@@ -9,6 +9,12 @@ head
   meta(name='keywords' content='Colorlib Templates')
   // Title Page
   title SALES AGENT
+  //-   // Bootstrap core CSS
+  //- link(href='../home/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+  //- // Custom styles for this template
+  //- link(href='../home/css/shop-homepage.css' rel='stylesheet')
+
+  
   // Icons font CSS
   link(href='/template/vendor/mdi-font/css/material-design-iconic-font.min.css' rel='stylesheet' media='all')
   link(href='/template/vendor/font-awesome-4.7/css/font-awesome.min.css' rel='stylesheet' media='all')
@@ -19,77 +25,101 @@ head
   link(href='/template/vendor/datepicker/daterangepicker.css' rel='stylesheet' media='all')
   // Main CSS
   link(href='/template/css/main.css' rel='stylesheet' media='all')
-.page-wrapper.bg-gra-03.p-t-45.p-b-50
-  .wrapper.wrapper--w790
-    .card.card-5
-      .card-heading
-        h2.title REGISTER SALESAGENT
-      .card-body
-        form(name='salesagentform' id='salesagentform' method='POST' enctype='multipart/form-data')
-          .form-row.m-b-55
-            .name Agent Name
-            .value
-              .row.row-space
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='firstname' id='firstname')
-                    div(class="error" id="firstnameErr")
-                    label.label--desc First Name
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='lastname' id='lastname')
-                    div(class="error" id="lastnameErr")
-                    label.label--desc Last Number
-          .form-row.m-b-55
-            .name ID NOs.
-            .value
-              .row.row-space
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='salesagentempid' id='salesagentempid')
-                    div(class="error" id="salesagentempidErr")
-                    label.label--desc Employee ID
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='salesagentnin' id='salesagentnin')
-                    div(class="error" id="salesagentninErr")
-                    label.label--desc National ID
-          .form-row
-            .name
-            .value
-              .input-group
-                input.input--style-5(type='file' name='salesagentphoto' id='salesagentphoto')
-                div(class="error" id="salesagentphotoErr")
-                label.label--desc Passport Photo
-          .form-row.m-b-55
-            .name   System Details
-            .value
-              .row.row-space
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='text' name='username')
-                    div(class="error" id="usernameErr")
-                    label.label--desc Username
-                .col-2
-                  .input-group-desc
-                    input.input--style-5(type='password' name='password')
-                    div(class="error" id="passwordErr")
-                    label.label--desc Password
-          div
-            button.btn.btn--radius-2.btn--red(type='submit' align='center') ADD SALESAGENT
-script(src='/validations/salesagentvalidation.js')
+body
+  
+    //- // Navigation
+    //- nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+    //-   .container
+    //-     a.navbar-brand(href='#') Covid Stores
+    //-     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+    //-       span.navbar-toggler-icon
+    //-     #navbarResponsive.collapse.navbar-collapse
+    //-       ul.navbar-nav.ml-auto
+    //-         li.nav-item.active
+    //-           a.nav-link(href='#')
+    //-             | Home
+    //-             span.sr-only (current)
+    //-         li.nav-item
+    //-           a.nav-link(href='http://localhost:4000/storemanager/registersalesagent') Register Sales Agent
+    //-         li.nav-item
+    //-           a.nav-link(href='http://localhost:4000/storemanager/agentlist') Sales Agent List
+    //-         li.nav-item
+    //-           a.nav-link(href='http://localhost:4000/storemanager/addproduct') Add Product
+    //-         li.nav-item
+    //-           a.nav-link(href='http://localhost:4000/storemanager/productlist') Product List
+    //-         li.nav-item
+    //-           a.nav-link(href='http://localhost:4000/storemanager/addproduct') Purchase List  
+    .page-wrapper.bg-gra-03.p-t-45.p-b-50
+      .wrapper.wrapper--w790
+        .card.card-5
+          .card-heading
+            h2.title REGISTER SALESAGENT
+          .card-body
+            form(name='salesagentform' id='salesagentform' method='POST' enctype='multipart/form-data')
+              .form-row.m-b-55
+                .name Agent Name
+                .value
+                  .row.row-space
+                    .col-2
+                      .input-group-desc
+                        input.input--style-5(type='text' name='firstname' id='firstname')
+                        div(class="error" id="firstnameErr")
+                        label.label--desc First Name
+                    .col-2
+                      .input-group-desc
+                        input.input--style-5(type='text' name='lastname' id='lastname')
+                        div(class="error" id="lastnameErr")
+                        label.label--desc Last Number
+              .form-row.m-b-55
+                .name ID NOs.
+                .value
+                  .row.row-space
+                    .col-2
+                      .input-group-desc
+                        input.input--style-5(type='text' name='salesagentempid' id='salesagentempid')
+                        div(class="error" id="salesagentempidErr")
+                        label.label--desc Employee ID
+                    .col-2
+                      .input-group-desc
+                        input.input--style-5(type='text' name='salesagentnin' id='salesagentnin')
+                        div(class="error" id="salesagentninErr")
+                        label.label--desc National ID
+              .form-row
+                .name
+                .value
+                  .input-group
+                    input.input--style-5(type='file' name='salesagentphoto' id='salesagentphoto')
+                    div(class="error" id="salesagentphotoErr")
+                    label.label--desc Passport Photo
+              .form-row.m-b-55
+                .name   System Details
+                .value
+                  .row.row-space
+                    .col-2
+                      .input-group-desc
+                        input.input--style-5(type='text' name='username')
+                        div(class="error" id="usernameErr")
+                        label.label--desc Username
+                    .col-2
+                      .input-group-desc
+                        input.input--style-5(type='password' name='password')
+                        div(class="error" id="passwordErr")
+                        label.label--desc Password
+              div
+                button.btn.btn--radius-2.btn--red(type='submit' align='center') ADD SALESAGENT
+    script(src='/validations/salesagentvalidation.js')
 
-// Jquery JS
-script(src='/template/vendor/jquery/jquery.min.js')
-// Vendor JS
+    // Jquery JS
+    script(src='/template/vendor/jquery/jquery.min.js')
+    // Vendor JS
 
-script(src='/template/vendor/select2/select2.min.js')
-script(src='/template/vendor/datepicker/moment.min.js')
-script(src='/template/vendor/datepicker/daterangepicker.js')
-// Main JS
-script(src='/template/js/global.js')
-// This templates was made by Colorlib (https://colorlib.com)
-// end document
+    script(src='/template/vendor/select2/select2.min.js')
+    script(src='/template/vendor/datepicker/moment.min.js')
+    script(src='/template/vendor/datepicker/daterangepicker.js')
+    // Main JS
+    script(src='/template/js/global.js')
+    // This templates was made by Colorlib (https://colorlib.com)
+    // end document
 
                    
      
