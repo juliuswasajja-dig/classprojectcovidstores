@@ -1,0 +1,58 @@
+
+doctype html
+head
+  // Required meta tags
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='Colorlib Templates')
+  meta(name='author' content='Colorlib')
+  meta(name='keywords' content='Colorlib Templates')
+  // Title Page
+  title ADD PRODUCT
+  // Icons font CSS
+  link(href='/template/vendor/mdi-font/css/material-design-iconic-font.min.css' rel='stylesheet' media='all')
+  link(href='/template/vendor/font-awesome-4.7/css/font-awesome.min.css' rel='stylesheet' media='all')
+  // Font special for pages
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' rel='stylesheet')
+  // Vendor CSS
+  link(href='/template/vendor/select2/select2.min.css' rel='stylesheet' media='all')
+  link(href='/template/vendor/datepicker/daterangepicker.css' rel='stylesheet' media='all')
+  // Main CSS
+  link(href='/template/css/main.css' rel='stylesheet' media='all')
+.page-wrapper.bg-gra-03.p-t-45.p-b-50
+  .wrapper.wrapper--w790
+    .card.card-5
+      .card-heading
+        h2.title PURCHASE DETAILSSSS
+      .card-body
+        each eachpurchase in purchases
+            .col-lg-4.col-md-6.mb-4
+              .card.h-100
+                //- a(href='#')
+                //-   img.card-img-top(src=eachproduct.productimage alt='')
+                .card-body
+                    p Customer Name #{eachpurchase.customername}
+                    p Customer Name #{eachpurchase.phoneno}
+                    p Customer Name #{eachpurchase.productname}
+                    p Customer Name #{eachpurchase.initialpay}
+                    p Customer Name #{eachpurchase.dateofinitialpay}
+                    p Customer Name #{eachpurchase.amountofnextpayment}
+                    p Customer Name #{eachpurchase.dateofnextpaymeny}
+                    p Customer Name #{eachpurchase.refereename}
+                    //p Customer Name #{eachpurchase.phoneno}
+
+                //-   h5 #{eachproduct.productprice}
+                //-   p.card-text
+                //-     | #{eachproduct.productdescription}
+                //- .card-footer
+script(src='/validations/productvalidation.js')
+// Jquery JS
+script(src='/template/vendor/jquery/jquery.min.js')
+// Vendor JS
+script(src='/template/vendor/select2/select2.min.js')
+script(src='/template/vendor/datepicker/moment.min.js')
+script(src='/template/vendor/datepicker/daterangepicker.js')
+// Main JS
+script(src='/template/js/global.js')
+// This templates was made by Colorlib (https://colorlib.com)
+// end document

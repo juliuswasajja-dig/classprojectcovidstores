@@ -29,38 +29,36 @@ head
             .card-heading
                 h2.title PURSCHASE LIST
             .card-body
-                //- div.form-row
-                //-     div.col.form-group.col-md-12    
-                //-         form.search(action='/register/userlist')
-                //-             div.form-row
-                //-                 div.col-md-8
-                //-                     input.form-control(name='city' placeholder="Enter your search term ...")
-                //-                 div.col-md-4
-                //-                     input.btn.btn-dark.btn-block(type="submit")
                 table.table
                     thead.thead-dark
                         tr
                             th Customer Name
-                            th Location
+                            //th Location
                             th Phone Number
                             th Product Name
                             th Initial Pay
                             th Date of Initial Pay
-                            th Amount Due Next Payment
-                            th Date of Next Payment
-                            th Referee Number
+                            //th Amount Due Next Payment
+                            //th Date of Next Payment
+                            //th Referee Name
                     tbody
                         each purchase in purchases
                             tr
                                 td #{purchase.customername}
-                                td #{purchase.location}
+                                //td #{purchase.location}
                                 td #{purchase.phoneno}
                                 td #{purchase.productname}
                                 td UGX #{purchase.initialpay}.00
                                 td #{purchase.dateofinitialpay}
-                                td UGX #{purchase.amountofnextpayment}.OO
-                                td #{purchase.dateofnextpayment}
-                                td #{purchase.refereename}
+                                //td UGX #{purchase.amountofnextpayment}.OO
+                                //td #{purchase.dateofnextpayment}
+                                //td #{purchase.refereename}
+                                td
+                                    form(method="post" action='/storemanager/purchaseinfo/'+purchase._id)
+                                        input(type="hidden" placeholder="" name="id" value="purchase._id" )
+                                        button.btn.btn-dark.btn-block(type="submit") MORE
+                                //- td 
+                                //-     a(href='http://localhost:4000/storemanager/salesagentinfo/'+saleagent.id) MORE INFO #{product.productname}                                
                                 //- td
                                 //-     form(method="post" action='/register/delete')
                                 //-         input(type="hidden" placeholder="" name="id" )

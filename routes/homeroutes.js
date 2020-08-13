@@ -25,4 +25,16 @@ router.get('/', async(req, res) => {
 })
 
 
+// Product page
+router.get('/product/:id', async(req, res) => {
+    try {
+        let eachproduct = await Product.find({ _id: req.params.id });
+        res.render('productpage', { page: `${req.params.name}`, products: eachproduct })
+    } catch (err) {
+        res.send('operation failed');
+        console.log(err);
+    }
+});
+
+
 module.exports = router;

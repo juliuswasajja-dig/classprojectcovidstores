@@ -214,6 +214,7 @@ router.post('/deleteproduct/:id', async(req, res) => {
     }
 });
 
+
 router.get('/purchaselist', async(req, res) => {
     if (req.session.user) {
         try {
@@ -233,6 +234,40 @@ router.get('/purchaselist', async(req, res) => {
     } else {
         console.log('cant find session')
         res.redirect('/salesagent/login')
+
+    }
+})
+
+
+// Purchase Detail page
+router.post('/purchaseinfo/:id', async(req, res) => {
+    if (req.session.user) {
+        try {
+            let eachpurchase = await Purchase.find({ _id: req.params.id });
+            res.render('storemanagerviews/purchasedetails', { page: `${req.params.name}`, purchases: eachpurchase })
+                //console.log('page rendered')
+        } catch (err) {
+            res.send('operation failed');
+            console.log(err);
+        }
+        // try {
+        //     await Purchase.find((err, purchases) => {
+        //         if (err) {
+        //             console.log(err);
+        //         } else {
+        //             res.send('route is woking')
+        //                 // res.render('storemanagerviews/purchasedetails', {
+        //                 //     purchases: purchases
+        //                 // })
+        //         }
+        //     })
+
+        // } catch (err) {
+        //     console.log(err)
+        // }
+    } else {
+        console.log('cant find session')
+        res.redirect('/storemanager/login')
 
     }
 })
