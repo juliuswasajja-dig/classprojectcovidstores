@@ -41,7 +41,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 router.get('/', (req, res) => {
     if (req.session.user) {
-        res.render('storemanagerviews/storemanagerpanel');
+        res.redirect('/storemanager/agentlist');
     } else {
         console.log('cant find session')
         res.redirect('/storemanager/login')
@@ -233,7 +233,7 @@ router.get('/purchaselist', async(req, res) => {
         }
     } else {
         console.log('cant find session')
-        res.redirect('/salesagent/login')
+        res.redirect('/storemanager/login')
 
     }
 })

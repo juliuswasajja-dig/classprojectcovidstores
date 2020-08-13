@@ -9,6 +9,7 @@ purchaseForm.addEventListener('submit', (e) => {
     // Retrieving the values of form elements 
     var customername = document.purchaseform.customername.value;
     var nationalidnumber = document.purchaseform.nationalidnumber.value;
+    var nationalidimage = document.purchaseform.nationalidimage.value;
     var location = document.purchaseform.location.value;
     var address = document.purchaseform.address.value;
     var phoneno = document.purchaseform.phoneno.value;
@@ -22,7 +23,6 @@ purchaseForm.addEventListener('submit', (e) => {
     var purchasereceipt = document.purchaseform.purchasereceipt.value;
     var refereename = document.purchaseform.refereename.value;
     var refereetelnumber = document.purchaseform.refereetelnumber.value;
-    var nationalidimage = document.purchaseform.nationalidimage.value;
 
 
 
@@ -31,7 +31,7 @@ purchaseForm.addEventListener('submit', (e) => {
 
 
     // Defining error variables with a default value
-    let customernameErr = nationalidnumberErr = purchasereceiptErr = dateofnextpaymentErr = amountofnextpaymentErr = dateofinitialpayErr = initialpayErr = productserialnumberErr = productnameErr = customeremailErr = phonenoErr = addressErr = locationErr = nationalidimageErr = refereetelnumberErr = refereenameErr = true;
+    let customernameErr = nationalidnumberErr = nationalidimageErr = purchasereceiptErr = dateofnextpaymentErr = amountofnextpaymentErr = dateofinitialpayErr = initialpayErr = productserialnumberErr = productnameErr = customeremailErr = phonenoErr = addressErr = locationErr = nationalidimageErr = refereetelnumberErr = refereenameErr = true;
 
 
     // Validate Customer Name
@@ -61,6 +61,15 @@ purchaseForm.addEventListener('submit', (e) => {
             nationalidnumberErr = false;
         }
     }
+    // Validate NIN Image
+    if (nationalidimage == "") {
+        printError("nationalidimageErr", "Please upload National ID");
+    } else {
+        printError("nationalidimageErr", "");
+        nationalidimageErr = false;
+    }
+
+
     // Validate Product Initial Pay
 
     if (initialpay == "") {
@@ -82,31 +91,47 @@ purchaseForm.addEventListener('submit', (e) => {
     // Validate location
     if (location == "") {
         printError("locationErr", "Please enter District");
+    } else {
+        printError("locationErr", "");
+        locationErr = false;
     }
+
     // Validate Address
     if (address == "") {
         printError("addressErr", "Please enter an Address");
+    } else {
+        printError("addressErr", "");
+        addressErr = false;
     }
 
-    // Validate NIN Image
-    if (nationalidimage == "") {
-        printError("nationalidimageErr", "Please upload National ID");
-    }
+
     // Validate Phone Number
     if (phoneno == "") {
         printError("phonenoErr", "Please enter Phone Number");
+    } else {
+        printError("phonenoErr", "");
+        phonenoErr = false;
     }
     // Validate Customer
     if (customeremail == "") {
         printError("customeremailErr", "Please enter an Email Address");
+    } else {
+        printError("customeremailErr", "");
+        customeremailErr = false;
     }
     // Validate Product Name
     if (productname == "") {
         printError("productnameErr", "Please enter a Product Name");
+    } else {
+        printError("productnameErr", "");
+        productnameErr = false;
     }
     // Validate Product Serial Number
     if (productserialnumber == "") {
         printError("productserialnumberErr", "Please enter a Product Serial Number");
+    } else {
+        printError("productserialnumberErr", "");
+        productserialnumberErr = false;
     }
 
     /*
@@ -120,29 +145,47 @@ purchaseForm.addEventListener('submit', (e) => {
     // Validate Product dateofinitialpay
     if (dateofinitialpay == "") {
         printError("dateofinitialpayErr", "Please enter Date of Initial Pay");
+    } else {
+        printError("dateofinitialpayErr", "");
+        dateofinitialpayErr = false;
     }
     // Validate Product amountofnextpayment
     if (amountofnextpayment == "") {
         printError("amountofnextpaymentErr", "Please enter Amount Due Next Payment");
+    } else {
+        printError("amountofnextpaymentErr", "");
+        amountofnextpaymentErr = false;
     }
     // Validate Product dateofnextpayment
     if (dateofnextpayment == "") {
         printError("dateofnextpaymentErr", "Please enter a Date of Next Payment");
+    } else {
+        printError("dateofnextpaymentErr", "");
+        dateofnextpaymentErr = false;
     }
     // Validate Product purchasereceipt
     if (purchasereceipt == "") {
         printError("purchasereceiptErr", "Please Upload Purchase Receipt");
+    } else {
+        printError("purchasereceiptErr", "");
+        purchasereceiptErr = false;
     }
     // Validate refereename
     if (refereename == "") {
         printError("refereenameErr", "Please enter a Referee Name");
+    } else {
+        printError("refereenameErr", "");
+        refereenameErr = false;
     }
     // Validate Product refereetelnumber
     if (refereetelnumber == "") {
         printError("refereetelnumberErr", "Please enter Referee Telephone Number");
+    } else {
+        printError("refereetelnumberErr", "");
+        refereetelnumberErr = false;
     }
 
-    if ((customernameErr || nationalidnumberErr || purchasereceiptErr || dateofnextpaymentErr || amountofnextpaymentErr || dateofinitialpayErr || initialpayErr || productserialnumberErr || productnameErr || customeremailErr || phonenoErr || addressErr || locationErr || nationalidimageErr || refereetelnumberErr || refereenameErr) == true) {
+    if ((customernameErr || nationalidnumberErr || nationalidimageErr || purchasereceiptErr || dateofnextpaymentErr || amountofnextpaymentErr || dateofinitialpayErr || initialpayErr || productserialnumberErr || productnameErr || customeremailErr || phonenoErr || addressErr || locationErr || refereetelnumberErr || refereenameErr) == true) {
         e.preventDefault();
         return false;
     } else {

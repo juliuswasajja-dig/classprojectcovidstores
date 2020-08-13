@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage });
-
+//LOGIN ROUTES
 router.get('/login', (req, res) => {
     res.render('loginviews/salesagentlogin')
 })
@@ -45,12 +45,14 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 router.get('/', (req, res) => {
     if (req.session.user) {
-        res.render('salesagentviews/salesagentpanel');
+        res.redirect('/salesagent/productlist');
     } else {
         console.log('cant find session')
         res.redirect('/salesagent/login')
     }
 });
+
+//PURCHASE ROUTES
 router.get('/addpurchase', (req, res) => {
     if (req.session.user) {
         res.render('salesagentviews/addpurchase');
@@ -65,9 +67,9 @@ router.post('/addpurchase', async(req, res) => {
         const addPurchase = new Purchase(req.body);
         try {
             await addPurchase.save();
-            res.send('Purchase added');
+            res.redirect('/salesagent/purchaselist');
         } catch (err) {
-            res.send('soomething went wromg');
+            res.send('Purchase Not Added Please Try Again');
             console.log(err)
         }
     } else {
@@ -98,6 +100,7 @@ router.get('/purchaselist', async(req, res) => {
     }
 })
 
+//PRODUCT ROUTES
 router.get('/productlist', async(req, res) => {
     if (req.session.user) {
         try {
