@@ -127,7 +127,7 @@ router.get('/productlist', async(req, res) => {
 })
 
 //logout
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     if (req.session) {
         req.session.destroy(function(err) {
             if (err) {
